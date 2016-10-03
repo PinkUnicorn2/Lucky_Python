@@ -1,4 +1,5 @@
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:root@localhost/lucky.db'
+SQLALCHEMY_DATABASE_URI = 'sqlite:///chat.db'
 SQLALCHEMY_TRACK_MODIFICATIONS = True
-SECRET_KEY = 'tEydyt0Qolb7wkOEHiITDwtKy6K7nxEDpmn'
+#erstellt mittels urandom(24)
+SECRET_KEY = 'O\xb9;\x19\x0e\x8c\x1c\x8d\xe47\xb1o\xd6\x96Wx\xb6\x06#J6F\xfb\xea'
 DEBUG = True
