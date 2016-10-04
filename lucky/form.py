@@ -42,14 +42,14 @@ class LoginForm(DefaultForm):
         if not FlaskForm.validate(self):
             return False
 
-        benutzer = user.query.filter_by(username=self.username.data).first()
-        if user is None:
+        nutzer = user.query.filter_by(username=self.username.data).first()
+        if nutzer is None:
             self.username.errors.append("Not a valid username")
             return False
 
-        if not benutzer.verify_password(self.password.data):
+        if not nutzer.verify_password(self.password.data):
             self.password.errors.append("Not a valid password")
             return False
 
-        self.user = benutzer
+        self.user = nutzer
         return True

@@ -10,14 +10,17 @@
 	<div class="container">
 	 
 	 {% block content %}{% endblock %}
-	 
+	
 	 {% if error %}
 	   <p class="error"><strong>Error:</strong> {{ error }}</p>
 	 {% endif %}
          
          {% for message in get_flashed_messages() %}
+	      <div class="alert alert-danger alert-dismissible" role="alert">
 	 {{ message }}
          {% endfor %}
+
+	 
 	</div>
  </body>
 </html>
