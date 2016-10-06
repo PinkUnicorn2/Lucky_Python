@@ -26,3 +26,4 @@ from lucky.routes import *
 from lucky.database import *
 from lucky.form import *
 from lucky.functions import *
+from lucky.chat import *

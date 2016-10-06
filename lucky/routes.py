@@ -1,23 +1,11 @@
 from flask import render_template, request, url_for, redirect, session, flash
-from functools import wraps
 from flask_login import current_user, login_user, logout_user, login_required
 from lucky import app
 from lucky.form import RegisterForm, LoginForm
 from lucky.database import db, user
 
-#Login-Skript (nicht genutzt)
-def login_required2(f):
-    @wraps(f)
-    def wrap(*args, **kwargs):
-        if 'logged_in' in session:
-            return f(*args, **kwargs)
-        else:
-            return redirect(url_for('login'))
-    return wrap
-
 
 @app.route('/')
-@login_required
 def main():
     return(render_template('index.html'))
 
@@ -45,6 +33,7 @@ def logout():
     flash('You are now logged out!')
     return redirect(url_for('login'))
 
+
 @app.route('/showSignUp', methods=['GET'])
 def register():
     return render_template('signup.html', RegisterForm=RegisterForm())
@@ -67,6 +56,7 @@ def register_validate():
     else:
         register_form.flash_form_errors()
         return redirect(url_for('register'))
+
 
 @app.route('/games')
 @login_required
