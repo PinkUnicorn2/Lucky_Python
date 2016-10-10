@@ -1,5 +1,5 @@
-from lucky.__init__ import login_manager, app, admin
-from lucky.database import user, chat, db
+from . import login_manager, app, admin
+from .database import user, chat, db
 from flask_admin.contrib.sqla import ModelView
 
 
