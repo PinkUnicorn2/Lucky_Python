@@ -1,6 +1,8 @@
+from flask import Flask
 from flask_socketio import SocketIO, send
-from lucky.__init__ import app
 
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'whazupp'
 socketio = SocketIO(app)
 
 @socketio.on('message')

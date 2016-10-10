@@ -4,7 +4,6 @@ from lucky import app
 from lucky.form import RegisterForm, LoginForm
 from lucky.database import db, user
 
-
 @app.route('/')
 def main():
     return(render_template('index.html'))

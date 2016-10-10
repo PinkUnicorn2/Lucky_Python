@@ -2,6 +2,7 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_moment import Moment
 from flask_admin import Admin
+from flask_socketio import SocketIO, send
 #from flask_wtf.csrf import CsrfProtect
 
 #csrf = CsrfProtect()
@@ -20,10 +21,16 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 admin = Admin(app)
 moment= Moment(app)
+socketio = SocketIO(app)
+
+#Websocket broadcasted alle Nachrichten
+@socketio.on('message')
+def handleMessage(msg):
+    print('Message: ' +msg)
+    send(msg, broadcast=True)
 
 #   Importierung der anderen PY_Dateien
 from lucky.routes import *
 from lucky.database import *
 from lucky.form import *
 from lucky.functions import *
-from lucky.chat import *

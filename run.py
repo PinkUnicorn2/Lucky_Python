@@ -1,3 +1,4 @@
 from lucky import app
+from lucky.__init__ import socketio
 #   create_app() wird aufgerufen -> __init__.py
-app.run()
+socketio.run(app)
