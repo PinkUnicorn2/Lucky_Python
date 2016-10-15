@@ -2,16 +2,19 @@ from flask import render_template, request, url_for, redirect, session, flash
 from flask_login import current_user, login_user, logout_user, login_required
 from lucky import app
 from lucky.form import RegisterForm, LoginForm
-from lucky.database import db, user
+from lucky.database import db, user, chat
+
+#Objekt wird mit Chat-History gefuellt
+messages=chat.query.all()
 
 @app.route('/')
 def main():
-    return(render_template('index.html'))
+    return(render_template('index.html',messages=messages))
 
 
 @app.route('/login', methods=['GET'])
 def login():
-    return render_template('login.html', LoginForm=LoginForm())
+    return render_template('login.html', LoginForm=LoginForm(),messages=messages)
 
 
 @app.route('/login', methods=['POST'])
@@ -35,7 +38,7 @@ def logout():
 
 @app.route('/showSignUp', methods=['GET'])
 def register():
-    return render_template('signup.html', RegisterForm=RegisterForm())
+    return render_template('signup.html', RegisterForm=RegisterForm(),messages=messages)
 
 
 @app.route('/showSignUp', methods=['POST'])
@@ -60,4 +63,4 @@ def register_validate():
 @app.route('/games')
 @login_required
 def games():
-    return render_template('games.html')
+    return render_template('games.html',messages=messages)

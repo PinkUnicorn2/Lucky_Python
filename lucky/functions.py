@@ -1,5 +1,5 @@
 from . import login_manager, app, admin
-from .database import user, chat, db
+from .database import user,db, chat
 from flask_admin.contrib.sqla import ModelView
 
 

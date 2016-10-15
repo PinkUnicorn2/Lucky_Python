@@ -3,8 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
 
-
-
 db = SQLAlchemy(app)
 
 class user(db.Model, UserMixin):
@@ -25,11 +23,11 @@ class user(db.Model, UserMixin):
 class chat(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id= db.Column(db.Integer, db.ForeignKey('user.id'))
-    text = db.Column(db.String(500))
+    message = db.Column(db.String(500))
     timestamp = db.Column(db.DateTime, index=True)
 
 
-def __init__(self, timestamp, user_id, text):
+def __init__(self ,user_id, message, timestamp):
     self.user_id = user_id
-    self.text = text
+    self.message = message
     self.timestamp = timestamp
