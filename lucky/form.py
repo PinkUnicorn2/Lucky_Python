@@ -1,8 +1,9 @@
-from lucky.database import user
+from lucky.database import user, chat
 from flask import flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
 from wtforms.validators import InputRequired, length, EqualTo, Email
+
 
 
 # Errorhandling
@@ -12,7 +13,7 @@ class DefaultForm(FlaskForm):
             for error in errors:
                 flash("Error in field: %s - %s" % (getattr(self, field).label.text, error))
 
-
+#   Registrierungs-Formular
 class RegisterForm(DefaultForm):
     username = StringField('Username', validators=[InputRequired(), length(1, 80)])
     email = StringField('Email', validators=[InputRequired(), length(1, 120), Email()])
@@ -33,7 +34,7 @@ class RegisterForm(DefaultForm):
         else:
             return True
 
-
+#   Login-Formular
 class LoginForm(DefaultForm):
     username = StringField('Username', validators=[InputRequired(), length(1, 80)])
     password = PasswordField('Password', validators=[InputRequired()])
@@ -44,12 +45,25 @@ class LoginForm(DefaultForm):
 
         nutzer = user.query.filter_by(username=self.username.data).first()
         if nutzer is None:
-            self.username.errors.append("Not a valid username")
+            self.username.errors.append("Ich mag den Benutzernamen nicht")
             return False
 
         if not nutzer.verify_password(self.password.data):
-            self.password.errors.append("Not a valid password")
+            self.password.errors.append("Ich mag das Passwort nicht")
             return False
 
         self.user = nutzer
         return True
+
+#   Chatformular
+class ChatForm(DefaultForm):
+    message = StringField('message', validators=[InputRequired(), length(1, 500)])
+    def validate(self):
+        if not FlaskForm.validate(self):
+            return False
+
+        message = chat.query.filter_by(message=self.message.data).first()
+        if message is None:
+            self.username.errors.append("Leere Nachrichten versende ich nicht")
+            return False
+

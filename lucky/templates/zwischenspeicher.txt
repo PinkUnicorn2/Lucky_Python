@@ -8,4 +8,12 @@ def login():
             session['logged_in'] = True
             flash('Login erfolgreich!')
             return redirect(url_for('main'))
-    return render_template('login.html', error=error) 
+    return render_template('login.html', error=error)
+
+
+
+
+    import datetime
+
+current_time=datetime.datetime.strftime(datetime.datetime.now(), '%H:%M:%S')
+current_date=datetime.datetime.strftime(datetime.datetime.now(), '%Y:%m:%d')

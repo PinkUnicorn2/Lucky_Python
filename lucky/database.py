@@ -10,7 +10,7 @@ class user(db.Model, UserMixin):
     username = db.Column(db.String(80), unique=True)
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(120))
-    money = db.Column(db.Integer, default=0)
+    money = db.Column(db.Integer, default=5000)
 
     def __init__(self, username, email, password):
         self.username = username
@@ -24,10 +24,11 @@ class chat(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id= db.Column(db.Integer, db.ForeignKey('user.id'))
     message = db.Column(db.String(500))
-    timestamp = db.Column(db.DateTime, index=True)
+    timestamp = db.Column(db.String(10), index=True)
+    datestamp = db.Column(db.String(10), index=True)
 
 
-def __init__(self ,user_id, message, timestamp):
-    self.user_id = user_id
-    self.message = message
-    self.timestamp = timestamp
+    def __init__(self ,message, timestamp, datestamp):
+        self.message = message
+        self.timestamp = timestamp
+        self.datestamp = datestamp

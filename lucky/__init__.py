@@ -3,6 +3,8 @@ from flask_login import LoginManager
 from flask_moment import Moment
 from flask_admin import Admin
 from flask_socketio import SocketIO, send
+import datetime
+
 
 #   Applikation wird erstellt ...
 def create_app():
@@ -22,8 +24,10 @@ socketio = SocketIO(app)
 #   Websocket broadcastet alle Nachrichten
 @socketio.on('message')
 def handleMessage(msg):
-    print('Message: ' +msg)
-    message = chat(message=msg)
+#   Keine Speicherung der aktuellen Zeit in Variablen, weil Timestamp dann nicht Aktuell
+    #print(datetime.datetime.strftime(datetime.datetime.now(), '%H:%M:%S')+ ':' +msg)
+    message = chat(message=msg,timestamp=datetime.datetime.strftime(datetime.datetime.now(), '%H:%M:%S'),
+                   datestamp=datetime.datetime.strftime(datetime.datetime.now(), '%Y:%m:%d'))
     db.session.add(message)
     db.session.commit()
 

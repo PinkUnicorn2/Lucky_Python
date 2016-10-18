@@ -1,5 +1,5 @@
 from database import db
-from database import user, chat
+from database import user
 
 db.create_all()
 

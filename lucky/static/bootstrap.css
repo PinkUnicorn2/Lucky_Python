@@ -12,6 +12,44 @@ html {
 body {
   margin: 0;
 }
+
+/*
+
+	_____ MEINS ANFANG___
+
+*/
+
+.content{
+padding:20px;
+width:650px; 
+background-color:red; 
+margin-top:100px;
+float:left;
+}
+
+.chat_out{
+padding:20px;
+width:500px;
+background-color:green;
+margin-top:120px;
+margin-left:650px;
+}
+
+.chat_in{
+padding:20px;
+width:280px;
+height:250px;
+background-color:teal;
+overflow:scroll;
+}
+
+/*
+
+	_____ MEINS ENDE___
+
+*/
+
+
 article,
 aside,
 details,
@@ -1582,6 +1620,7 @@ pre code {
   overflow-y: scroll;
 }
 .container {
+  background-color: purple;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;

@@ -3,23 +3,69 @@
  <head>
 	<title>Pyluck</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="icon" href="http://files.softicons.com/download/toolbar-icons/16x16-free-application-icons-by-aha-soft/ico/Dollar.ico">
+	<link href="static/bootstrap.css" rel="stylesheet" media="screen">
 	<script type="text/javascript" src="static/socket.io.js"></script>
 	<script src="static/jquery.js"></script>
  </head>
 
  <body>
-	<div class="container">
+    <div class="container">
 
-	 {% block content %}{% endblock %}
 
- 	 {% if current_user.is_authenticated %}
-		         <h2>Angemeldet als : {{ current_user.username }}</h2>
-		         <p><a href="{{ url_for('.logout') }}">Logout</a></p>
-		{% else %}
+
+     <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="/games">Games <span class="sr-only">(current)</span></a></li>
+        <li class="active">          	 {% if current_user.is_authenticated %}
+		         <p>Angemeldet als: {{ current_user.username }}</p></li>
+		<li class="active"><p><a href="{{ url_for('.logout') }}">Logout</a></p>
+		            {% else %}
 		         <p><a href="{{ url_for('.login') }}">Login</a></p>
 		         <p><a href="{{ url_for('.register') }}">Registrierung</a></p>
-	 {% endif %}
+	                {% endif %}</li>
+      </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+
+
+
+	<div class="content">
+		<!-- Inhalt der HTML-Dateien _ extendet durch base.html  -->
+	 {% block content %}	{% endblock %}
+
+</div>
+		<!-- 2. Container chat + Login -->
+		<div class="chat_out">
+
+
+            <div class="chat_in">
+            <ul id="messages" style="list-style:none;">
+		        {% for msg in messages %}
+		 	    <li>{{ msg.message }}</li>
+		        {% endfor %}
+	        </ul>
+            </div>
+        	{% if current_user.is_authenticated %}
+	 <input type="text" id="myMessage">
+	 <button id="sendbutton">Send</button>
+ 	{% endif %}
+
+
+
+
+             </div>
+
 
 	 {% if error %}
 	   <p class="error"><strong>Error:</strong> {{ error }}</p>
@@ -30,8 +76,8 @@
 	 {{ message }}
          {% endfor %}
 
-     </div>
-	</div>
+     	</div>
+
 
 	 <script type="text/javascript">
 		$(document).ready(function() {
@@ -48,14 +94,8 @@
 
 	 });
 	 </script>
-	 <ul id="messages">
-		 {% for msg in messages %}
-		 	<li>{{ msg.message }}</li>
-		 {% endfor %}
-	 </ul>
-	{% if current_user.is_authenticated %}
-	 <input type="text" id="myMessage">
-	 <button id="sendbutton">Send</button>
- 	{% endif %}
+
+
+    </div>
  </body>
 </html>
