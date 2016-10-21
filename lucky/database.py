@@ -28,7 +28,8 @@ class chat(db.Model):
     datestamp = db.Column(db.String(10), index=True)
 
 
-    def __init__(self ,message, timestamp, datestamp):
+    def __init__(self ,message, timestamp, datestamp, user_id):
         self.message = message
         self.timestamp = timestamp
         self.datestamp = datestamp
+        self.user_id = user_id

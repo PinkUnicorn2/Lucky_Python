@@ -5,16 +5,15 @@ from lucky.form import RegisterForm, LoginForm
 from lucky.database import db, user, chat
 
 #Objekt wird mit Chat-History gefuellt
-messages=chat.query.all()
 
 @app.route('/')
 def main():
-    return(render_template('index.html',messages=messages))
+    return(render_template('index.html',messages=chat.query.all()))
 
 
 @app.route('/login', methods=['GET'])
 def login():
-    return render_template('login.html', LoginForm=LoginForm(),messages=messages)
+    return render_template('login.html', LoginForm=LoginForm(),messages=chat.query.all())
 
 
 @app.route('/login', methods=['POST'])
@@ -38,7 +37,7 @@ def logout():
 
 @app.route('/showSignUp', methods=['GET'])
 def register():
-    return render_template('signup.html', RegisterForm=RegisterForm(),messages=messages)
+    return render_template('signup.html', RegisterForm=RegisterForm(),messages=chat.query.all())
 
 
 @app.route('/showSignUp', methods=['POST'])
@@ -63,4 +62,4 @@ def register_validate():
 @app.route('/games')
 @login_required
 def games():
-    return render_template('games.html',messages=messages)
+    return render_template('games.html',messages=chat.query.all())

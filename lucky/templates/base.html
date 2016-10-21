@@ -49,6 +49,24 @@
 		<div class="chat_out">
 
 
+
+	 <script type="text/javascript">
+		$(document).ready(function() {
+
+		var socket = io.connect('http://127.0.0.1:5000');
+
+		socket.on('message', function(msg) {
+			$("#messages").append('<li>'+msg+'</li>');
+		});
+		$('#sendbutton').on('click', function() {
+			socket.send($('#myMessage').val());
+			$('#myMessage').val('');
+		});
+
+	 });
+	 </script>
+
+
             <div class="chat_in">
             <ul id="messages" style="list-style:none;">
 		        {% for msg in messages %}
@@ -77,25 +95,6 @@
          {% endfor %}
 
      	</div>
-
-
-	 <script type="text/javascript">
-		$(document).ready(function() {
-
-		var socket = io.connect('http://127.0.0.1:5000');
-
-		socket.on('message', function(msg) {
-			$("#messages").append('<li>'+msg+'</li>');
-		});
-		$('#sendbutton').on('click', function() {
-			socket.send($('#myMessage').val());
-			$('#myMessage').val('');
-		});
-
-	 });
-	 </script>
-
-
     </div>
  </body>
 </html>
