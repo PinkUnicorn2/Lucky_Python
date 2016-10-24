@@ -4,11 +4,10 @@ from lucky import app
 from lucky.form import RegisterForm, LoginForm
 from lucky.database import db, user, chat
 
-#Objekt wird mit Chat-History gefuellt
 
 @app.route('/')
 def main():
-    return(render_template('index.html',messages=chat.query.all()))
+    return(render_template('index.html',messages=chat.query.all(), user=user.query.all()))
 
 
 @app.route('/login', methods=['GET'])

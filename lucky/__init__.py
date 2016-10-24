@@ -27,11 +27,14 @@ socketio = SocketIO(app)
 def handleMessage(msg):
 #   Keine Speicherung der aktuellen Zeit in Variablen, weil Timestamp dann nicht Aktuell
     print(datetime.datetime.strftime(datetime.datetime.now(), '%H:%M:%S')+ ':' +msg)
+#   chat.Nachricht, chat.Zeit, chat.Datum und chat.Benutzername werden in message Objekt gepackt
     message = chat(message=msg,timestamp=datetime.datetime.strftime(datetime.datetime.now(), '%H:%M:%S'),
                    datestamp=datetime.datetime.strftime(datetime.datetime.now(), '%Y:%m:%d'),user_id=current_user.id)
+#   message objekt wird an Datenbank uebergeben
     db.session.add(message)
+#   und gespeichert
     db.session.commit()
-
+    msg=current_user.username+' ['+datetime.datetime.strftime(datetime.datetime.now(), '%H:%M:%S')+']: '+msg
     send(msg, broadcast=True)
 
 #   Importierung der anderen PY_Dateien

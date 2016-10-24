@@ -70,7 +70,8 @@
             <div class="chat_in">
             <ul id="messages" style="list-style:none;">
 		        {% for msg in messages %}
-		 	    <li>{{ msg.message }}</li>
+		 	    <li>{% for id in user %}{% if msg.user_id == id.id %}{{ id.username }} {% endif %}{% endfor %}
+					[{{ msg.timestamp }}]: {{ msg.message }}</li>
 		        {% endfor %}
 	        </ul>
             </div>
