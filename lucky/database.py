@@ -11,6 +11,7 @@ class user(db.Model, UserMixin):
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(120))
     money = db.Column(db.Integer, default=5000)
+    logged_in = db.Column(db.Integer, default=0)
 
     def __init__(self, username, email, password):
         self.username = username

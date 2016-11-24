@@ -1,4 +1,48 @@
 {% extends "base.html" %}
 {% block content %}
-     <h1>Wilkommen bei Games</h1>
-{% endblock %}
+     <h1>Finde den Spion!</h1>
+          <SCRIPT LANGUAGE="JavaScript">
+     xloc = new Array(4);
+     yloc = new Array(4);
+     xloc[0] = "x1"
+     xloc[1] = "x2"
+     xloc[2] = "x3"
+     xloc[3] = "x4"
+     yloc[0] = "y1"
+     yloc[1] = "y2"
+     yloc[2] = "y3"
+     yloc[3] = "y4"
+
+     spyloc = xloc[Math.floor(Math.random() * 3) + 1] + yloc[Math.floor(Math.random() * 3) + 1]
+     console.log("Spion ist bei: " + spyloc);
+     function search(loc) {
+     if (loc==spyloc) {
+     alert("\n\nBRAVO! Du hast den Spion gefunden! :)");
+     }
+     else {
+     alert("Der Spion ist nich hier :(")
+        }
+     }
+     </script>
+
+     <CENTER>
+     <FORM method="POST" name="searchb">
+     <input type=checkbox onClick="javascript:search('x1y1');">
+     <input type=checkbox onClick="javascript:search('x1y2');">
+     <input type=checkbox onClick="javascript:search('x1y3');">
+     <input type=checkbox onClick="javascript:search('x1y4');"><br>
+     <input type=checkbox onClick="javascript:search('x2y1');">
+     <input type=checkbox onClick="javascript:search('x2y2');">
+     <input type=checkbox onClick="javascript:search('x2y3');">
+     <input type=checkbox onClick="javascript:search('x2y4');"><br>
+     <input type=checkbox onClick="javascript:search('x3y1');">
+     <input type=checkbox onClick="javascript:search('x3y2');">
+     <input type=checkbox onClick="javascript:search('x3y3');">
+     <input type=checkbox onClick="javascript:search('x3y4');"><br>
+     <input type=checkbox onClick="javascript:search('x4y1');">
+     <input type=checkbox onClick="javascript:search('x4y2');">
+     <input type=checkbox onClick="javascript:search('x4y3');">
+     <input type=checkbox onClick="javascript:search('x4y4');">
+     </FORM>
+     </CENTER>
+     {% endblock %}

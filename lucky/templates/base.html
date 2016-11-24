@@ -65,7 +65,12 @@
 
 	 });
 	 </script>
-
+			<!-- Zeige alle eingeloggten Benutzer an -->
+			<p>Aktive User: {% for active in user %}
+    		{% if active.logged_in == 1 %}
+        	{{ active.username }}
+    		{% endif %}
+{% endfor %}</p>
 
             <div class="chat_in">
             <ul id="messages" style="list-style:none;">

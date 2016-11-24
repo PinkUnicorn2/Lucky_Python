@@ -45,11 +45,11 @@ class LoginForm(DefaultForm):
 
         nutzer = user.query.filter_by(username=self.username.data).first()
         if nutzer is None:
-            self.username.errors.append("Ich mag den Benutzernamen nicht")
+            self.username.errors.append("Benutzername nicht bekannt")
             return False
 
         if not nutzer.verify_password(self.password.data):
-            self.password.errors.append("Ich mag das Passwort nicht")
+            self.password.errors.append("Passwort stimmt nicht")
             return False
 
         self.user = nutzer
@@ -60,10 +60,5 @@ class ChatForm(DefaultForm):
     message = StringField('message', validators=[InputRequired(), length(1, 500)])
     def validate(self):
         if not FlaskForm.validate(self):
-            return False
-
-        message = chat.query.filter_by(message=self.message.data).first()
-        if message is None:
-            self.username.errors.append("Leere Nachrichten versende ich nicht")
             return False
 

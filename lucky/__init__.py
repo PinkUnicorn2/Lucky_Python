@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_login import LoginManager, current_user
+from flask_login import LoginManager
 from flask_moment import Moment
 from flask_admin import Admin
 from flask_socketio import SocketIO, send

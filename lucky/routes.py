@@ -20,6 +20,12 @@ def login_validate():
     login_form = LoginForm()
     if login_form.validate_on_submit():
         login_user(login_form.user, remember=True)
+        # Setzte direkt nach dem Einloggen in der Datenbank, logged_in auf 1,
+        # um spaeter alle eingeloggten User anzeigen zu koennen
+        # eigentliche Abfrage in base.html
+        nutzer = user.query.filter_by(username=current_user.username).first()
+        nutzer.logged_in = 1
+        db.session.commit()
         return redirect(url_for('main'))
     else:
         login_form.flash_form_errors()
@@ -29,8 +35,12 @@ def login_validate():
 @app.route('/logout')
 @login_required
 def logout():
+    #Setzte logged_in auf 0, wenn Benutzer dabei ist, sich auszuloggen
+    nutzer = user.query.filter_by(username=current_user.username).first()
+    nutzer.logged_in = 0
+    db.session.commit()
     logout_user()
-    flash('You are now logged out!')
+    flash('Logout erfolgreich!')
     return redirect(url_for('login'))
 
 
@@ -51,7 +61,7 @@ def register_validate():
         db.session.add(nutzer)
         db.session.commit()
         login_user(nutzer)
-        flash('Succesful registered.<br/>You are now logged in!')
+        flash('Registrierung erfolgreich!')
         return redirect(url_for('main'))
     else:
         register_form.flash_form_errors()
