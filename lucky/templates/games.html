@@ -18,9 +18,27 @@
      function search(loc) {
      if (loc==spyloc) {
      alert("\n\nBRAVO! Du hast den Spion gefunden! :)");
-     }
-     else {
-     alert("Der Spion ist nich hier :(")
+          $.get('/cash_weg',function(data, status){
+                    if (data == 'verpiss dich'){
+                         $('*').remove();
+                         alert('Du bist Pleite verpiss dich');
+                    }
+               else{
+                    alert("Du hast 5000 Einhornmünzen gewonnen");
+               }
+               });
+               }
+               else {
+               alert("Der Spion ist nich hier :(")
+               $.get('/cash_weg',function(data, status){
+                    if (data == 'verpiss dich'){
+                         $('*').remove();
+                         alert('Du bist Pleite verpiss dich');
+                    }
+               else{
+               alert("250 Einhornmünzen wurden abgebucht du nooooob");
+               }
+          });
         }
      }
      </script>
