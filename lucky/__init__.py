@@ -26,7 +26,7 @@ socketio = SocketIO(app)
 @socketio.on('message')
 def handleMessage(msg):
 #   Keine Speicherung der aktuellen Zeit in Variablen, weil Timestamp dann nicht Aktuell
-    print(datetime.datetime.strftime(datetime.datetime.now(), '%H:%M:%S')+ ':' +msg)
+    print(datetime.datetime.strftime(datetime.datetime.now(), '%H%M:%S')+ ':' +msg)
 #   chat.Nachricht, chat.Zeit, chat.Datum und chat.Benutzername werden in message Objekt gepackt
     message = chat(message=msg,timestamp=datetime.datetime.strftime(datetime.datetime.now(), '%H:%M:%S'),
                    datestamp=datetime.datetime.strftime(datetime.datetime.now(), '%Y:%m:%d'),user_id=current_user.id)

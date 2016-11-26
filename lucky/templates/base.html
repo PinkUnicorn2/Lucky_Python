@@ -16,11 +16,11 @@
 
      <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
         <li class="active"><a href="/games">Games <span class="sr-only">(current)</span></a></li>
+		  <!-- Wenn User eingelogged, zeige "logout-Button" -->
         <li class="active">          	 {% if current_user.is_authenticated %}
 		         <p>Angemeldet als: {{ current_user.username }}</p></li>
 		<li class="active"><p><a href="{{ url_for('.logout') }}">Logout</a></p>
@@ -31,8 +31,8 @@
       </ul>
         </li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    </div>
+  </div>
 </nav>
 
 
@@ -66,31 +66,34 @@
 	 });
 	 </script>
 			<!-- Zeige alle eingeloggten Benutzer an -->
-			<p>Aktive User: {% for active in user %}
-    		{% if active.logged_in == 1 %}
-        	{{ active.username }}
-    		{% endif %}
-{% endfor %}</p>
+			<p>Aktive User:
+			{% for active in user %}
+				{% if active.logged_in == 1 %}
+					{{ active.username }}
+				{% endif %}
+			{% endfor %}</p>
 
             <div class="chat_in">
             <ul id="messages" style="list-style:none;">
+				<!-- Auflistung aller Nachrichten -->
 		        {% for msg in messages %}
-		 	    <li>{% for id in user %}{% if msg.user_id == id.id %}{{ id.username }} {% endif %}{% endfor %}
+		 	    <li>{% for id in user %}
+						{% if msg.user_id == id.id %}
+							{{ id.username }}
+						{% endif %}
+					{% endfor %}
 					[{{ msg.timestamp }}]: {{ msg.message }}</li>
 		        {% endfor %}
 	        </ul>
             </div>
-        	{% if current_user.is_authenticated %}
+	<!-- Wenn user nicht eingelogged, send-Button ausblenden  -->
+	 {% if current_user.is_authenticated %}
 	 <input type="text" id="myMessage">
 	 <button id="sendbutton">Send</button>
  	{% endif %}
-
-
-
-
              </div>
 
-
+		<!-- Errorhandling -->
 	 {% if error %}
 	   <p class="error"><strong>Error:</strong> {{ error }}</p>
 	 {% endif %}

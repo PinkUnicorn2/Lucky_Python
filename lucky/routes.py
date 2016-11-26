@@ -1,4 +1,4 @@
-from flask import render_template, request, url_for, redirect, session, flash
+from flask import render_template, request, url_for, redirect, session, flash, jsonify
 from flask_login import current_user, login_user, logout_user, login_required
 from lucky import app
 from lucky.form import RegisterForm, LoginForm
@@ -12,7 +12,7 @@ def main():
 
 @app.route('/login', methods=['GET'])
 def login():
-    return render_template('login.html', LoginForm=LoginForm(),messages=chat.query.all())
+    return render_template('login.html', LoginForm=LoginForm(),messages=chat.query.all(),user=user.query.all())
 
 
 @app.route('/login', methods=['POST'])
@@ -71,4 +71,4 @@ def register_validate():
 @app.route('/games')
 @login_required
 def games():
-    return render_template('games.html',messages=chat.query.all())
+    return render_template('games.html',messages=chat.query.all(),user=user.query.all())
