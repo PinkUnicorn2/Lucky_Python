@@ -68,6 +68,33 @@ def register_validate():
         return redirect(url_for('register'))
 
 
+@app.route('/cash_weg')
+@login_required
+def cash_weg():
+    nutzer = user.query.filter_by(username=current_user.username).first()
+
+    if nutzer.money<250:
+        return 'verpiss dich'
+
+    nutzer.money=nutzer.money-250;
+    db.session.add(nutzer)
+    db.session.commit()
+    return 'abgebucht'
+
+
+@app.route('/cash_dazu')
+def cash_dazu():
+    nutzer = user.query.filter_by(username=current_user.username).first()
+    nutzer.money=nutzer.money+5000;
+
+    if nutzer.money<250:
+        return 'verpiss dich'
+
+    db.session.add(nutzer)
+    db.session.commit()
+    return 'abgebucht'
+
+
 @app.route('/games')
 @login_required
 def games():
