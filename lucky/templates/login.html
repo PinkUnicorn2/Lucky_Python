@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-	 <h1>Bitte loggen sie sich ein</h1>
-	 <br>
-	 <form action="" method="post">
-	  <input type="text" placeholder="Username" name="username" value="{{ request.form.username }}">
-	   <input type="password" placeholder="Password" name="password" value="{{ request.form.password }}">
-	  <input class="btn btn_default" type="submit" value="Login">
-	 </form>
+<div class="jumbotron">
+    <h2>Login</h2>
+    <form method="POST" action="/login">
+        <p>{{ LoginForm.username(class_="form-control", placeholder=LoginForm.username.label.text) }}</p>
+        <p>{{ LoginForm.password(class_="form-control", placeholder=LoginForm.password.label.text) }}</p>
+        {{ LoginForm.csrf_token }}
+        <p><input id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="submit" value="Login" /></p>
+    </form>
+</div>
 {% endblock %}

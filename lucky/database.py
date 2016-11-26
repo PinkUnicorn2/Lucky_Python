@@ -3,8 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
 
-
-
 db = SQLAlchemy(app)
 
 class user(db.Model, UserMixin):
@@ -12,7 +10,8 @@ class user(db.Model, UserMixin):
     username = db.Column(db.String(80), unique=True)
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(120))
-    money = db.Column(db.Integer, default=0)
+    money = db.Column(db.Integer, default=5000)
+    logged_in = db.Column(db.Integer, default=0)
 
     def __init__(self, username, email, password):
         self.username = username
@@ -25,11 +24,13 @@ class user(db.Model, UserMixin):
 class chat(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id= db.Column(db.Integer, db.ForeignKey('user.id'))
-    text = db.Column(db.String(500))
-    timestamp = db.Column(db.DateTime, index=True)
+    message = db.Column(db.String(500))
+    timestamp = db.Column(db.String(10), index=True)
+    datestamp = db.Column(db.String(10), index=True)
 
 
-def __init__(self, timestamp, user_id, text):
-    self.user_id = user_id
-    self.text = text
-    self.timestamp = timestamp
+    def __init__(self ,message, timestamp, datestamp, user_id):
+        self.message = message
+        self.timestamp = timestamp
+        self.datestamp = datestamp
+        self.user_id = user_id

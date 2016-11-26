@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="jumbotron">
+    <h2>Register</h2>
+    <form method="POST" action="/showSignUp" enctype="multipart/form-data">
+        <p>{{ RegisterForm.username(class_="form-control", placeholder=RegisterForm.username.label.text) }}</p>
+        <p>{{ RegisterForm.email(class_="form-control", placeholder=RegisterForm.email.label.text) }}</p>
+        <p>{{ RegisterForm.password(class_="form-control", placeholder=RegisterForm.password.label.text) }}</p>
+        <p>{{ RegisterForm.password_confirm(class_="form-control", placeholder=RegisterForm.password_confirm.label.text) }}</p>
+        {{ RegisterForm.csrf_token }}
+        <p><input id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="submit" value="Register" /></p>
+    </form>
+</div>
+     {% endblock %}
