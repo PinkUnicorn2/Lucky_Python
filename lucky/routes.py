@@ -72,7 +72,6 @@ def register_validate():
 @login_required
 def cash_weg():
     nutzer = user.query.filter_by(username=current_user.username).first()
-    print(nutzer)
     if nutzer.money<250:
         return 'verpiss dich'
 
@@ -83,11 +82,10 @@ def cash_weg():
 
 @app.route('/cash_dazu')
 def cash_dazu():
-
     nutzer = user.query.filter_by(username=current_user.username).first()
-    print(nutzer)
     if nutzer.money<250:
         return 'verpiss dich'
+
     nutzer.money+=5000;
     db.session.commit()
     return 'abgebucht'
