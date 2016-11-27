@@ -94,4 +94,4 @@ def cash_dazu():
 @app.route('/games')
 @login_required
 def games():
-    return render_template('games.html',messages=chat.query.all())
+    return render_template('games.html',messages=chat.query.all(),user=user.query.all())
