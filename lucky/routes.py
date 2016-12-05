@@ -67,6 +67,10 @@ def register_validate():
         register_form.flash_form_errors()
         return redirect(url_for('register'))
 
+@app.route('/mymoney')
+def my_money():
+    nutzer = user.query.filter_by(username=current_user.username).first()
+    return str(nutzer.money)
 
 
 
