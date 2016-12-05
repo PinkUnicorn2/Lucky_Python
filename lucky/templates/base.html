@@ -20,7 +20,9 @@
         <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
         <li class="active"><a href="/games">Games <span class="sr-only">(current)</span></a></li>
         <li class="active">          	 {% if current_user.is_authenticated %}
-		         <p>&nbsp Angemeldet als: {{ current_user.username }}&nbsp</p></li>
+		         <p>&nbsp Angemeldet als: {{ current_user.username }}&nbsp </p></li>
+                <btn style="margin-left:100px; "class="btn btn-success btn-large">Einhornmünzen: <span id="mycash">{{ current_user.money }}</span></btn>
+
 		<li class="active"><p><a href="{{ url_for('.logout') }}">Logout</a></p>
 		            {% else %}
 		         <p><a href="{{ url_for('.login') }}">Login</a></p>

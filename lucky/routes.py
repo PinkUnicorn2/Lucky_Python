@@ -68,6 +68,8 @@ def register_validate():
         return redirect(url_for('register'))
 
 
+
+
 @app.route('/cash_weg')
 @login_required
 def cash_weg():
