@@ -20,19 +20,20 @@
      if (loc==spyloc) {
           $.get('/cash_dazu',function(data, status){
                     if (data == 'verpiss dich'){
-                         $('*').remove();
-                         alert('Du bist Pleite verpiss dich');
+                         alert('Du bist Pleite, kauf dir mehr Einhornmünzen oder verpiss dich!');
+                         location.reload(true);
                     }
                else{
                     alert("Du hast den Spion gefunden und 5000 Einhornmünzen gewonnen !!!");
+                    location.reload(true);
                }
                });
                }
                else {
                $.get('/cash_weg',function(data, status){
                     if (data == 'verpiss dich'){
-                         $('*').remove();
-                         alert('Du bist Pleite verpiss dich');
+                         alert('Du bist Pleite, kauf dir mehr Einhornmünzen!');
+                         location.reload(true);
                     }
                else{
                alert("Der Spion ist nicht hier -250 Einhornmünzen");

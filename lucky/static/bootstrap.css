@@ -21,8 +21,8 @@ body {
 
 .container {
   background-color: #99ff99;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 10px;
+  padding-left: 10px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -31,7 +31,7 @@ body {
 padding:20px;
 width:650px; 
 background-color:#80ff80; 
-margin-top:100px;
+margin-top:0px;
 float:left;
 }
 
@@ -39,17 +39,17 @@ float:left;
 padding:20px;
 width:500px;
 background-color:#66ff66;
-margin-top:120px;
+margin-top:20px;
 margin-left:650px;
 }
 
 .chat_in{
-  padding-top: 30px;
-  padding-bottom: 30px;
+padding-top: 30px;
+padding-bottom: 30px;
 margin-bottom: 30px;
 color: inherit;
-width:400px;
-height:250px;
+width:465px;
+height:350px;
 background-color:#d6f5f5;
 overflow:scroll;
 }
